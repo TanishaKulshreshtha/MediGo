@@ -2,18 +2,16 @@ import { createContext } from "react";
 
 export const AppContext=createContext();
 
-const AppContextProvider=(props)=>{
-
+const AppContextProvider = (props) => {
+    
     const value={
-
+        
     }
-
     return(
-        <AppContextProvider value={value}>
-            {props.children}
-        </AppContextProvider>
+       <AppContext.Provider value={value}>
+        {props.children}
+       </AppContext.Provider> 
     )
-
 }
 
 export default AppContextProvider
