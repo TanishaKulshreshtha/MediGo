@@ -1,6 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { AppContext } from "../context/AppContext";
+import axios from 'axios'
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+
+  const {token,setToken,backendUrl}=useContext(AppContext)
+  const navigate=useNavigate()
   const [state, setState] = useState("Signup");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -8,7 +14,35 @@ const Login = () => {
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
+    try{
+        if(state==='Signup'){
+          const {data}=await axios.post(backendUrl+'/api/user/register',{name,password,email})
+          if(data.success){
+            localStorage.setItem('token',data.token)
+            setToken(data.token)
+          }else{
+            toast.error(data.message)
+          }
+        }
+        else{
+          const {data}=await axios.post(backendUrl+'/api/user/login',{email,password})
+          if(data.success){
+            localStorage.setItem('token',data.token)
+            setToken(data.token)
+          }else{
+            toast.error(data.message)
+          }
+        }
+    }catch(error){
+      toast.error(error.message)
+    }
   };
+
+  useEffect(()=>{
+    if(token){
+      navigate('/')
+    }
+  },[token])
 
   return (
     <div className="flex items-center justify-center min-h-screen ">

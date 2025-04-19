@@ -1,18 +1,24 @@
-import React, { useState } from 'react'
-import logo from '../assets/logo.png'
+import React, { useContext, useState } from 'react'
+import logo from '../assets/logo.jpg'
 import downarrow from '../assets/downarrow.png'
 import profile from '../assets/profile.png'
 import { NavLink, useNavigate } from 'react-router-dom'
+import { AppContext } from '../context/AppContext'
 
 const Navbar = () => {
     const navigate =useNavigate();
 
     const [showMenu,setShowMenu]=useState(false);
-    const [token,setToken]=useState(true);
+    const {token,setToken,userData}=useContext(AppContext);
+
+    const logout =()=>{
+        setToken(false)
+        localStorage.removeItem('token')
+    }
 
   return (
-    <div className='flex justify-between items-center text-md py-4 mb-5 border-b bg-blue-50'>
-      <img src={logo} className='w-18 cursor-pointer' />
+    <div className='flex justify-between items-center text-md py-4 mb-5 border-b'>
+      <img src={logo} className='w-48 cursor-pointer' />
       <ul className='hidden md:flex items-start gap-5 font-medium'>
         <NavLink to='/'>
             <li className='py-1'>Home</li>
@@ -33,15 +39,15 @@ const Navbar = () => {
       </ul>
       <div className='flex items-center gap-4'>
         {
-            token
+            token && userData
             ? <div className='flex items-center gap-2 cursor-pointer group relative'>
-                <img src={profile} className='w-10 rounded-full' />
+                <img src={userData.image} className='w-10 rounded-full' />
                 <img src={downarrow} className='w-4' />
                 <div className='absolute top-0 right-0 pt-14 text-base font-medium text-gray-600 z-20 hidden group-hover:block '>
                     <div className='min-w-48 bg-stone-100 rounded flex flex-col gap-4 p-4'>
                         <p onClick={()=>navigate('/my-profile')} className='hover:text-black cursor-pointer'>My Profile</p>
                         <p onClick={()=>navigate('/my-appointments')} className='hover:text-black cursor-pointer'>My Appointments</p>
-                        <p onClick={()=>setToken(false)} className='hover:text-black cursor-pointer'>Logout</p>
+                        <p onClick={logout} className='hover:text-black cursor-pointer'>Logout</p>
                     </div>
                 </div>
             </div>

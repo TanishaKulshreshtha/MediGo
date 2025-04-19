@@ -23,7 +23,7 @@ const Doctors = () => {
       <p className='text-gray-600'>Browse through the doctors specialist</p>
       <div className='flex flex-col sm:flex-row items-start gap-5 mt-5'>
         <div className='flex flex-col gap-4  text-gray-600'>
-          <p onClick={()=>speciality ==='Psychatrist' ? navigate('/doctors'):navigate('/doctors/Psychatrist')} className="w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer">Psychatrist</p>
+          <p onClick={()=>speciality ==='Psychiatrist' ? navigate('/doctors'):navigate('/doctors/Psychiatrist')} className="w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer"> Psychiatrist</p>
           <p onClick={()=>speciality ==='Family Counselling' ? navigate('/doctors'):navigate('/doctors/Family Counselling')} className='w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer'>Family Counselling</p>
           <p onClick={()=>speciality ==='Disorders' ? navigate('/doctors'):navigate('/doctors/Disorders')} className='w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer'>Disorders</p>
           <p onClick={()=>speciality ==='Career Counselling' ? navigate('/doctors'):navigate('/doctors/Career Counselling')} className='w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer'>Career Counselling</p>

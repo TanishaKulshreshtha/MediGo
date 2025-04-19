@@ -5,7 +5,7 @@ import Career from './Career.png';
 import Therapy from './Therapy.png';
 
 export const serviceData = [
-  { speciality: "Psychatrist", image: General },
+  { speciality: "Psychiatrist", image: General },
   { speciality: "Family Counselling", image: Divorce },
   { speciality: "Disorders", image: Trauma },
   { speciality: "Career Counselling", image: Career },
